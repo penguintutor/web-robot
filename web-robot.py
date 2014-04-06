@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # RPi Magician Robot - 
-# see http://www.penguintutor.com/magician-robot
+# see http://www.penguintutor.com/rubyrobot
 # web-robot.py
 # Copyright Stewart Watkiss 2014
 
@@ -45,6 +45,8 @@ GPIO.setmode(GPIO.BCM)
 
 # speed = pwm duty cycle, 0 = off, 100 = max
 speed = 75
+# To change speed add or remove 10 - check for <0 and >100
+
 
 # server ip address - set to 127.0.0.1 for local connections only, or change to actual address if require access direct from other computers (eg. smartphone) '' = all interfaces
 HOST = ''
@@ -139,9 +141,7 @@ def motor_change():
 
 # direction based on number keypad 
 # 8 = fwd, 2 = rev, 4 = left, 5 = right, 7 = fwd left, 9 = fwd right, 1 = rev left, 3 = rev right
-# key is 'num' - ie key
-# tuples are (motor1, motor2)
-# values are 0 = motor stop, 1 = motor fwd (A), 2 = motor rev (B)
+### These are from the command line version - they are not used in this version. This list will be removed in future edits
 direction = {
     # number keys
     '1' : (2, 0),
@@ -152,17 +152,7 @@ direction = {
     '6' : (2, 1),
     '7' : (1, 0),
     '8' : (1, 1),
-    '9' : (0, 1),
-    # keyboard keys
-    'r' : (1, 0),
-    't' : (1, 1),
-    'y' : (0, 1),
-    'f' : (1, 2),
-    'g' : (0, 0),
-    'h' : (2, 1),
-    'c' : (2, 0),
-    'v' : (2, 2),
-    'b' : (0, 2)
+    '9' : (0, 1)
 }
 
 
@@ -187,88 +177,16 @@ pin2B.start (0)
 
 
 
-# Create regexp for use later
-#network_direc = re.compile(DIREC\s\d)
-
-#motor_change()
-
-
 app.run(host=HOST, port=PORT)
 
-# while True:
-    # print "in loop"
-    # ## Motor 1
-    # # fwd
-    # if current_direction[0] == 1 :
-        # pin1B.ChangeDutyCycle(0)
-        # pin1A.ChangeDutyCycle(speed)
-    # # rev
-    # elif current_direction[0] == 2 :
-        # pin1A.ChangeDutyCycle(0)
-        # pin1B.ChangeDutyCycle(speed)
-    # # stop
-    # else :
-        # pin1A.ChangeDutyCycle(0)
-        # pin1B.ChangeDutyCycle(0)
-# 
-    # ## Motor 2
-    # # fwd
-    # if current_direction[1] == 1 :
-        # pin2B.ChangeDutyCycle(0)
-        # pin2A.ChangeDutyCycle(speed)
-    # # rev
-    # elif current_direction[1] == 2 :
-        # pin2A.ChangeDutyCycle(0)
-        # pin2B.ChangeDutyCycle(speed)
-    # # stop
-    # else :
-        # pin2A.ChangeDutyCycle(0)
-        # pin2B.ChangeDutyCycle(0)
-# 
-
-    # # validate message
-    # # split into command & options
-    # cmdargs = message.split()
-    # if (cmdargs[0] == "STATUS"):
-        # # Get motor status
-        # if (len(cmdargs)>1 and cmdargs[1] == "MOTOR"):
-            # response = 'RSTATUS MOTOR '+str(speed)+'  '+str(current_direction[0])+' '+str(current_direction[1])+'\n'
-        # # If just received "STATUS" or invalid query return ready status
-        # else :
-            # response = 'RSTATUS READY\n'
-    # elif (cmdargs[0] == 'DIREC'):
-        # # validate entries are ints and within allowed range
-        # try: 
-            # motor1 = int(cmdargs[2])
-            # motor2 = int(cmdargs[3])
-        # except ValueError:
-            # response = 'ERROR MOTOR INVALID'
-        # if (response == '') :
-            # if (motor1 >=0 and motor1 <=2 and motor2 >=0 and motor2 <=2) :
-                # current_direction[0] = motor1
-                # current_direction[1] = motor2
-            # else :
-                # response = "ERROR MOTOR VALUE INVALID"
-
     
-    # elif (ch == '+' or ch == 'p') :
-        # speed += 10
-        # if speed > 100 :
-            # speed = 100
-        # print "Speed : "+str(speed)+"\n"
-    # elif (ch == '-' or ch == 'l') :
-        # speed -= 10
-        # if speed < 0 :
-            # speed = 0
-        # print "Speed : "+str(speed)+"\n"
-        
+# Stop PWM and cleanup - only called if exit from bottle server        
 pin1A.stop()
 pin1B.stop()
 pin2A.stop()
 pin1B.stop()
 GPIO.cleanup()
 
-# Pad a string using '{0: <length
-        
+
 
 
