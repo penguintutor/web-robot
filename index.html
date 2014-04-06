@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>RubyRobot web control</title>
+<link href="public/robot.css" rel="stylesheet" type="text/css">
+<!-- Add Jquery -->
+<script type="text/javascript" src="public/jquery.min.js"></script>
+<script type="text/javascript" src="public/robot.js"></script>
+</head>
+<body>
+
+<h1>RubyRobot web control</h1>
+
+<div id="status">...</div>
+
+<div id="control" oncontextmenu="return false;">
+<div id="direction">
+
+<table cols="3" cellspacing="0">
+<tr class="directionrow">
+    <td class="directioncell" cellspacing="0"><img class="directionbutton" id="direc_1_1" src="public/directions_1_1.png" alt="left-forward"></td>
+    <td class="directioncell" cellspacing="0"><img class="directionbutton" id="direc_2_1" src="public/directions_2_1.png" alt="forward"></td>
+    <td class="directioncell" cellspacing="0"><img class="directionbutton" id="direc_3_1" src="public/directions_3_1.png" alt="right-forward"></td>
+</tr>
+<tr class="directionrow">
+    <td class="directioncell"><img class="directionbutton" id="direc_1_2" src="public/directions_1_2.png" alt="left"></td>
+    <td class="directioncell"><img class="directionbutton" id="direc_2_2" src="public/directions_2_2.png" alt="stop"></td>
+    <td class="directioncell"><img class="directionbutton" id="direc_3_2" src="public/directions_3_2.png" alt="right"></td>
+</tr>
+<tr class="directionrow">
+    <td class="directioncell"><img class="directionbutton" id="direc_1_3" src="public/directions_1_3.png" alt="left-reverse"></td>
+    <td class="directioncell"><img class="directionbutton" id="direc_2_3" src="public/directions_2_3.png" alt="reverse"></td>
+    <td class="directioncell"><img class="directionbutton" id="direc_3_3" src="public/directions_3_3.png" alt="right-reverse"></td>
+</tr>
+</table>
+
+
+</div>
+</div>
+
+
+<table cols="3">
+<tr>
+    <td><a href="/control?cmd=motor&m1=1&m2=0">7</a></td>
+    <td><a href="/control?cmd=motor&m1=1&m2=1">8</a></td>
+    <td><a href="/control?cmd=motor&m0=1&m2=1">9</a></td>
+</tr>
+<tr>
+    <td><a href="/control?cmd=motor&m1=1&m2=2">4</a></td>
+    <td><a href="/control?cmd=motor&m1=0&m2=0">5</a></td>
+    <td><a href="/control?cmd=motor&m0=2&m2=1">6</a></td>
+</tr>
+<tr>
+    <td><a href="/control?cmd=motor&m1=2&m2=0">1</a></td>
+    <td><a href="/control?cmd=motor&m1=2&m2=2">2</a></td>
+    <td><a href="/control?cmd=motor&m0=0&m2=2">3</a></td>
+</tr>
+
+</table>
+
+
+
+</body>
+</html>
