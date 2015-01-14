@@ -13,6 +13,7 @@ More information on bottle is available from:
 http://bottlepy.org/docs/dev/index.html
 
 Download jquery minimum file into the /home/pi/robot directory.
+(tested with 2.0.3 but should work with other versions)
 
 Set the command executable
 sudo chmod +x web-robot.py

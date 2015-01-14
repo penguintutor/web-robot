@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# RPi Magician Robot - 
+# RPi Robot - 
 # see http://www.penguintutor.com/rubyrobot
 # web-robot.py
 # Copyright Stewart Watkiss 2014
@@ -27,6 +27,7 @@ except RuntimeError:
 import sys, tty, termios
 import bottle
 from bottle import route, request, response, template, static_file
+import usercode
 
 app = bottle.Bottle()
 
@@ -94,6 +95,14 @@ def control_robot():
         
         return 'Speed changed to '+str(speed);
     return "No change"
+
+
+@app.route ('/run')
+def run_robot():
+    # This will run any cmd as long as it matches a valid function in UserCode
+    global current_direction
+    cmd = request.query.cmd
+    getattr (usercode, cmd)
 
 
 @app.route ('/')
