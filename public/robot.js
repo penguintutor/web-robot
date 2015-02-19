@@ -18,14 +18,16 @@ $('#direc_2_3').mousedown(function(){dirButtonClicked('2_3')});
 
 $('#direc_3_3').mousedown(function(){dirButtonClicked('3_3')});
 
+$('#photo').mousedown(function(){photoClicked()});
+
 
 // If we wanted to have click to start and stop instead of release to stop then
 // disable remaining handlers and just handle the clicks
 // add handler for each button, but only do anything with it if that button is active
-$('#direc_1_1').mouseleave(function(){dirButtonMouseLeft('1_1')});
+//$('#direc_1_1').mouseleave(function(){dirButtonMouseLeft('1_1')});
 
 // Do mouseup at the document level as whenever mouse button is released we send appropriate stop
-$('#direction').mouseup(function(){mouseRelease()});
+//$('#direction').mouseup(function(){mouseRelease()});
 
 $('#status').html("<p>Status unknown</p>");
 
@@ -55,6 +57,8 @@ function dirButtonClicked (button) {
     motors = buttonToMotor (button);    
     sendAjax ('control', 'cmd=motor&m1='+motors[0]+'&m2='+motors[1]);
 }
+
+
 
 
 // mouse button released if we are in press to move mode then cancel
@@ -92,6 +96,16 @@ function sendAjax (type, params) {
     
 }
 
+// When photo clicked - recapture and then update view
+function photoClicked () {
+    // capture new photo - does not check return code
+    $.get ('photocapture');
+    // Update photo - include timestamp to stop browser from caching
+    $("#photo").attr("src", "/photo?timestamp=" + new Date().getTime());
+}
+
+
+
 // call back function from ajax code
 function updateStatus (data) {
     // Update screen with new status
@@ -100,22 +114,3 @@ function updateStatus (data) {
 }
 
 
-//$.get(url, data, callback);
-// $.get('rateMovie.php','rating=5&setting2=1');
-// 
-// 
-// $('#message a').click(function() {
-// var href=$(this).attr('href');
-// var querystring=href.slice(href.indexOf('?')+1);
-// get('rate.php', querystring, processResponse);
-// return false; // stop the link
-// });
-
-
-// function processResponse(data) {
-// var newHTML;
-// newHTML = '<h2>Your vote is counted</h2>';
-// newHTML += '<p>The average rating for this movie is ';
-// newHTML += data + '.</p>';
-// $('#message').html(newHTML);
-// }
