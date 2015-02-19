@@ -112,7 +112,13 @@ def webcontrol():
 
 @app.route ('/photo')
 def take_photo():
+        with picamera.PiCamera() as camera:
+            camera.resolution = (1296, 972)
+            camera.exif_tags['IFD0.Artist'] = 'Penguintutor Robot'
+            camera.capture('/home/pi/robot/photos/photo.jpg')   
 	return "OK"
+
+
 
 
 
@@ -141,16 +147,7 @@ def motor_change():
     else :
         pin2A.ChangeDutyCycle(0)
         pin2B.ChangeDutyCycle(0)
-
-
-def take_photo():
-    
-    with picamera.PiCamera() as camera:
-    camera.resolution = (1296, 972)
-    camera.exif_tags['IFD0.Artist'] = 'Penguintutor Robot'
-    camera.capture('/home/pi/robot/photos/photo.jpg')
-    
-    return "OK"
+ 
 
 
 
