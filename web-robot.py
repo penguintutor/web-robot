@@ -31,6 +31,13 @@ from bottle import route, request, response, template, static_file
 
 app = bottle.Bottle()
 
+# Camera settings
+CAMERA_X = 1296
+CAMERA_Y = 972
+# Is camera upright / upside down
+# Upside down = 180
+CAMERA_ROTATE = 180
+
 
 # Motor PINs
 MOTOR1A = 17    #left fwd
@@ -110,14 +117,20 @@ def webcontrol():
 
 
 
-@app.route ('/photo')
+@app.route ('/photocapture')
 def take_photo():
-        with picamera.PiCamera() as camera:
-            camera.resolution = (1296, 972)
-            camera.exif_tags['IFD0.Artist'] = 'Penguintutor Robot'
-            camera.capture('/home/pi/robot/photos/photo.jpg')   
+    with picamera.PiCamera() as camera:
+        camera.resolution = (CAMERA_X, CAMERA_Y)
+        camera.rotation = CAMERA_ROTATE
+        camera.exif_tags['IFD0.Artist'] = 'Penguintutor Robot'
+        camera.capture('/home/pi/robot/photos/photo.jpg')
+        camera.close()
 	return "OK"
 
+
+@app.route ('/photo')
+def view_photo():
+    return static_file("photo.jpg", root='/home/pi/robot/photos/')
 
 
 
