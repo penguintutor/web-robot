@@ -25,6 +25,7 @@ except RuntimeError:
     print("Error importing RPi.GPIO! This must be run as root using sudo")
 
 import sys, tty, termios
+import picamera
 import bottle
 from bottle import route, request, response, template, static_file
 
@@ -108,6 +109,13 @@ def webcontrol():
 	return "OK"
 
 
+
+@app.route ('/photo')
+def take_photo():
+	return "OK"
+
+
+
 # Change the motor outputs based on the current_direction and speed global variables
 def motor_change():
     #print "Update motors to " + str(current_direction[0]) + " " + str(current_direction[1])
@@ -135,7 +143,14 @@ def motor_change():
         pin2B.ChangeDutyCycle(0)
 
 
-
+def take_photo():
+    
+    with picamera.PiCamera() as camera:
+    camera.resolution = (1296, 972)
+    camera.exif_tags['IFD0.Artist'] = 'Penguintutor Robot'
+    camera.capture('/home/pi/robot/photos/photo.jpg')
+    
+    return "OK"
 
 
 
