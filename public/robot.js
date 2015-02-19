@@ -7,15 +7,12 @@ $(document).ready(function() {
 // define handlers
 $('#direc_1_1').mousedown(function(){dirButtonClicked('1_1')});
 $('#direc_2_1').mousedown(function(){dirButtonClicked('2_1')});
-//$('#direc_2_1').ontouchstart(function(){preventDefault();dirButtonClicked('2_1');});
 $('#direc_3_1').mousedown(function(){dirButtonClicked('3_1')});
 $('#direc_1_2').mousedown(function(){dirButtonClicked('1_2')});
 $('#direc_2_2').mousedown(function(){dirButtonClicked('2_2')});
 $('#direc_3_2').mousedown(function(){dirButtonClicked('3_2')});
 $('#direc_1_3').mousedown(function(){dirButtonClicked('1_3')});
 $('#direc_2_3').mousedown(function(){dirButtonClicked('2_3')});
-//$('#direc_2_3').ontouchstart(function(){preventDefault();dirButtonClicked('2_3');});
-
 $('#direc_3_3').mousedown(function(){dirButtonClicked('3_3')});
 
 $('#photo').mousedown(function(){photoClicked()});
@@ -23,10 +20,8 @@ $('#photo').mousedown(function(){photoClicked()});
 
 // If we wanted to have click to start and stop instead of release to stop then
 // disable remaining handlers and just handle the clicks
-// add handler for each button, but only do anything with it if that button is active
-//$('#direc_1_1').mouseleave(function(){dirButtonMouseLeft('1_1')});
 
-// Do mouseup at the document level as whenever mouse button is released we send appropriate stop
+// Do mouseup at the div level as whenever mouse button is released we send appropriate stop
 //$('#direction').mouseup(function(){mouseRelease()});
 
 $('#status').html("<p>Status unknown</p>");
