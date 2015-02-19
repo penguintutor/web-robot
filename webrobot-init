@@ -1,0 +1,27 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          webrobot
+# Required-Start:    $local_fs
+# Required-Stop:     $local_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start/stop webrobot
+### END INIT INFO
+# More details see:
+# http://www.penguintutor.com/
+case "$1" in
+start)
+    cd /home/pi/robot
+    /home/pi/robot/web-robot.py
+;;
+stop)
+    pkill web-robot
+    echo "Web robot stopped"
+;;
+*)
+echo "Usage: /etc/init.d/webrobot {start|stop}"
+exit 1
+;;
+esac
+exit 0
+
