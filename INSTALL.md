@@ -1,6 +1,11 @@
 Install guide for web-robot
 ===========================
 
+This software is intended for install to a robot based on the Ruby Robot from PenguinTutor.com 
+
+See [PenguinTutor.com Ruby Robot - Raspberry Pi robot guide](http://www.penguintutor.com/electronics/rubyrobot) 
+
+
 Copy the web-robot files to folder /home/pi/robot on the Raspberry Pi.
 
 This can be done by using
