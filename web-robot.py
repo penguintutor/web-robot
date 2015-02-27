@@ -82,8 +82,12 @@ def server_public (filename):
 @app.route ('/control')
 def control_robot():
     global current_direction
+    global speed
+
+    getvar_dict = request.query.decode()
     cmd = request.query.cmd
     if (cmd == 'motor') :
+        
         # two motor values m1 and m2
         # If missing from url or not int then set to 0 = stop
         m1 = int(request.query.m1) or 0
@@ -98,10 +102,31 @@ def control_robot():
         motor_change()
 
         return 'Motor changed to (' + str(current_direction[0]) + ' , ' + str(current_direction[1]) + ')'
+    # speed set= sets an actual speed (0 to 100), chg = is a relative change
     elif (cmd == 'speed') :
         
+        # is this a set request
+        if 'set' in getvar_dict.keys():
+            newSpeed = int(request.query.set) or -1
+            if (newSpeed >= 0 and newSpeed <= 100) :
+                speed = newSpeed
+        elif 'chg' in getvar_dict.keys() :
+            # zero means not change signal recieved - or set to 0 in either case no change to speed
+            chgSpeed = int (request.query.chg) or 0
+            newSpeed = speed + chgSpeed
+            if (newSpeed < 0) :
+                speed = 0
+            elif (newSpeed > 100) :
+                speed = 100
+            else :
+                speed = newSpeed
+        else :
+            return "No change"
+            
+
         return 'Speed changed to '+str(speed);
-    return "No change"
+    return "Command not recognised"
+    
 
 
 @app.route ('/')
