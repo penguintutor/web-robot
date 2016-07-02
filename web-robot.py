@@ -2,7 +2,7 @@
 # RPi Magician Robot - 
 # see http://www.penguintutor.com/rubyrobot
 # web-robot.py
-# Copyright Stewart Watkiss 2014
+# Copyright Stewart Watkiss 2014 - 2016
 
 
 # This code is free software: you can redistribute it and/or modify
@@ -17,6 +17,13 @@
 # 
 # You should have received a copy of the GNU General Public License
 # along with this software.  If not, see <http://www.gnu.org/licenses/>.
+
+# Define the type of motor controller board
+# If appropriate change this to one of the following
+# penguintutor (Robot guide penguintutor.com)
+# ryantek (Ryantek MCB) [same as penguintutor]
+# camjam (CamJam EduKit 3 - Robotics Kit)
+MOTORBOARD = 'penguintutor'
 
 try:
     import RPi.GPIO as GPIO
@@ -39,11 +46,18 @@ CAMERA_Y = 972
 CAMERA_ROTATE = 180
 
 
-# Motor PINs
+# Motor PINs (defaults)
 MOTOR1A = 17    #left fwd
 MOTOR1B = 18    #left rev
 MOTOR2A = 23    #right fwd
 MOTOR2B = 22    #right rev
+
+
+if (MOTORBOARD == 'camjam'):
+    MOTOR2A = 7
+    MOTOR2B = 8
+    MOTOR1A = 9
+    MOTOR1B = 10
 
 # freq of pwm outputs
 PWM_FREQ = 50 #50hz
