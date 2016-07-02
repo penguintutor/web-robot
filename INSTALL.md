@@ -16,9 +16,9 @@ unzip master.zip
 mv web-remote-master robot
 ```
 
-Copy the Bottle module into the /home/pi/robot directory.
+Install Python Bottle
+
 ```bash
-install Python Bottle
 sudo apt-get install python3-bottle
 ```
 
