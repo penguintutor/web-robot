@@ -19,20 +19,10 @@ mv web-remote-master robot
 
 Copy the Bottle module into the /home/pi/robot directory.
 
-Download Bottle from:
-https://raw.githubusercontent.com/defnull/bottle/master/bottle.py
+install Python Bottle
+sudo apt-get install python3-bottle
 
-
-More information on bottle is available from:
-http://bottlepy.org/docs/dev/index.html
-
-Download jquery minimum file into the /home/pi/robot/public  directory:
-
-wget http://code.jquery.com/jquery-2.1.3.min.js 
-
-mv jquery-2.1.3.min.js /home/pi/robot/public/jquery.min.js
-
-Set the command executable
+Set the command so that it is executable
 sudo chmod 755 web-robot.py
 
 Run the program using:

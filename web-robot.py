@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # RPi Magician Robot - 
 # see http://www.penguintutor.com/rubyrobot
 # web-robot.py
@@ -150,7 +150,7 @@ def take_photo():
         camera.exif_tags['IFD0.Artist'] = 'Penguintutor Robot'
         camera.capture('/home/pi/robot/photos/photo.jpg')
         camera.close()
-	return "OK"
+    return "OK"
 
 
 @app.route ('/photo')

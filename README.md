@@ -5,7 +5,7 @@ Web interface for the Ruby Robot
 
 Currently under development this allows control of the Ruby robot through a web interface on a mobile phone or computer.
 
-For more details see http://www.penguintutor.com/rubyrobot
+For more details see http://www.penguintutor.com/rpirobot
 
 WARNING
 =======
